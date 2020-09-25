@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Wander</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="normal_map">normal map</string>
+    <string name="hybird_map">hybrid map</string>
+    <string name="satelite_app">satelite Map</string>
+    <string name="terrain_map">terrain Map</string>
+    <string name="uyo_map">uyo map</string>
+    <string name="lat_long_snippet">Lat: %1$.5f, Long: %2$.5f</string>
+    <string name="dropped_pin">Dropped Pin</string>
+    <string name="poi">poi</string>
+</resources>
