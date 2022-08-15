@@ -25,7 +25,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val TAG = MapsActivity::class.java.simpleName
     private val REQUEST_LOCATION_PERMISSION = 1
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
@@ -35,6 +34,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
         isPermissionGranted()
 
+    }
+
+
+    private fun isPermissionGranted(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.map_option, menu)
+        return true
     }
 
     private fun enableMyLocation() {
@@ -57,31 +72,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 return
             }
             map.isMyLocationEnabled = true
-        } else {
+        }
+        else {
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
                 REQUEST_LOCATION_PERMISSION
             )
         }
-
     }
-
-    private fun isPermissionGranted(): Boolean {
-        return ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-
-    }
-
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.map_option, menu)
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.normal_map -> {
             map.mapType = GoogleMap.MAP_TYPE_NORMAL
@@ -99,32 +98,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             map.mapType = GoogleMap.MAP_TYPE_TERRAIN
             true
         }
-        R.id.uyo_map -> {
-            map.mapType = GoogleMap.MAP_TYPE_NONE
-            true
-        }
 
         else -> super.onOptionsItemSelected(item)
 
     }
-
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+    
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
         // Add a marker in Sydney and move the camera
-        val latitude = 5.038963
-        val longitude = 7.909470
-        val zoomLevel = 20f
+        val latitude = 8.6753
+        val longitude = 9.0820
+        val zoomLevel = 18f
 
         val homeLatLng = LatLng(latitude, longitude)
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng, zoomLevel))
@@ -145,7 +130,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun setMapLongClick(map: GoogleMap) {
         map.setOnMapLongClickListener { latLng ->
 
-
             val snippets = String.format(
                 Locale.getDefault(), "Lat: %1$.5f, Long:%2$.5f",
                 latLng.latitude,
@@ -154,6 +138,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             map.addMarker(
                 MarkerOptions().position(latLng).title(getString(R.string.dropped_pin))
                     .snippet(snippets)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
             )
 
         }

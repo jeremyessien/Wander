@@ -18,8 +18,5 @@
         android:title="@string/terrain_map"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/uyo_map"
-        android:title="@string/uyo_map"
-        app:showAsAction="never"/>
 
 </menu>
