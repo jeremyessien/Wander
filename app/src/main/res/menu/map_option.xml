@@ -2,21 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/normal_map"
+    <item
+        android:id="@+id/normal_map"
         android:title="@string/normal_map"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
-    <item android:id="@+id/hybrid"
+    <item
+        android:id="@+id/hybrid"
         android:title="@string/hybird_map"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
-    <item android:id="@+id/satellite"
+    <item
+        android:id="@+id/satellite"
         android:title="@string/satelite_app"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
-    <item android:id="@+id/terrain"
+    <item
+        android:id="@+id/terrain"
         android:title="@string/terrain_map"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
 
 </menu>
